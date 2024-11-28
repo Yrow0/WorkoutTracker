@@ -97,7 +97,7 @@ function handleLegendItemClick(d: BulletLegendItemInterface, i: number) {
       </template>
 
       <template v-for="(category, i) in categories" :key="category">
-        <VisLine
+        <VisLine 
           :x="(d: Data, i: number) => i"
           :y="(d: Data) => d[category]"
           :color="colors[i]"
@@ -117,6 +117,7 @@ function handleLegendItemClick(d: BulletLegendItemInterface, i: number) {
         :grid-line="false"
         :tick-line="false"
         tick-text-color="hsl(var(--vis-text-color))"
+        
       />
       <VisAxis
         v-if="showYAxis"

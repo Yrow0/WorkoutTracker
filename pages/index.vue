@@ -15,6 +15,7 @@
         <UiProgress v-model="progress"/>
         <UiButton variant="outline" size="icon" class="right-0">
           <Icon name="ri:add-line"/>
+          
         </UiButton>
       </UiDashboardCard>
 
@@ -23,7 +24,7 @@
           index="name"
           :category="'total'"
           :data="data"
-          :colors="['#f96d6d', '#f1b24b', '#6d6087']"
+          :colors="['#E91E63', '#FFC107', '#3F51B5']"
           :show-legend="true"
           :type="'pie'"
         />
@@ -31,15 +32,15 @@
     </div>
 
     <!-- Right column card -->
-    <div class="right-column">
+    <div class="right-column" >
       <UiDashboardCard title="Évolution sur l'année">
         <AreaChart
           :data="areadata"
           index="name"
-          :categories="['total']"
-          :colors="['blue']"
+          :categories="['total','bench','squat','deadlift']"
+          :colors="['#00BFA5','#FFC107','#E91E63','#3F51B5']"
           :show-legend="true"
-          :yFormatter="(value) => value + ' points'"
+          
         />
       </UiDashboardCard>
     </div>
@@ -48,8 +49,6 @@
 
 
 <script lang="ts" setup>
-import { colors } from '@unovis/ts';
-import { PieChart } from 'lucide-vue-next';
 import AreaChart from '~/components/ui/chart-area/AreaChart.vue';
 import DonutChart from '~/components/ui/chart-donut/DonutChart.vue';
 
@@ -60,6 +59,11 @@ watchEffect((cleanupFn) => {
   cleanupFn(() => clearTimeout(timer));
 });
 
+function test()
+{
+  console.log("test");
+}
+
 const data = [
   { name: 'Squat', total: 100 },
   { name: 'Bench', total: 80 },
@@ -67,18 +71,18 @@ const data = [
 ];
 
 const areadata = [
-  { name: 'Janvier', total: 150 },
-  { name: 'Février', total: 160 },
-  { name: 'Mars', total: 170 },
-  { name: 'Avril', total: 180 },
-  { name: 'Mai', total: 200 },
-  { name: 'Juin', total: 210 },
-  { name: 'Juillet', total: 220 },
-  { name: 'Août', total: 230 },
-  { name: 'Septembre', total: 240 },
-  { name: 'Octobre', total: 250 },
-  { name: 'Novembre', total: 260 },
-  { name: 'Décembre', total: 270 },
+  { name: 'Janvier', total: 300, squat: 120, bench: 100, deadlift: 80 },
+  { name: 'Février', total: 310, squat: 125, bench: 105, deadlift: 80 },
+  { name: 'Mars', total: 320, squat: 130, bench: 110, deadlift: 80 },
+  { name: 'Avril', total: 330, squat: 135, bench: 115, deadlift: 80 },
+  { name: 'Mai', total: 340, squat: 140, bench: 120, deadlift: 80 },
+  { name: 'Juin', total: 350, squat: 145, bench: 125, deadlift: 80 },
+  { name: 'Juillet', total: 360, squat: 150, bench: 130, deadlift: 80 },
+  { name: 'Août', total: 370, squat: 155, bench: 135, deadlift: 80 },
+  { name: 'Septembre', total: 380, squat: 160, bench: 140, deadlift: 80 },
+  { name: 'Octobre', total: 390, squat: 165, bench: 145, deadlift: 80 },
+  { name: 'Novembre', total: 400, squat: 170, bench: 150, deadlift: 80 },
+  { name: 'Décembre', total: 410, squat: 175, bench: 155, deadlift: 80 },
 ];
 </script>
 
