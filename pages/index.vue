@@ -1,12 +1,11 @@
 <template>
   <header class="mt-[10px] grow flex">
-    <div>
-      <p style="color:grey">Bienvenue Antonin,</p>
-      <h1>Tableau de bord</h1>
-    </div>
-    <div class="ml-auto"> <!-- Ajout de la classe ml-auto -->
-      <UiLogo/>
-    </div>
+    <div v-if="data">
+    Hello {{ data }}!
+  </div>
+  <div v-else>
+    You are not logged in.
+  </div>
   </header>
   <div class="dashboard-grid gap-4">
     <!-- Left column cards -->
@@ -23,7 +22,7 @@
         <DonutChart
           index="name"
           :category="'total'"
-          :data="data"
+          :data="datas"
           :colors="['#E91E63', '#FFC107', '#3F51B5']"
           :show-legend="true"
           :type="'pie'"
@@ -40,7 +39,6 @@
           :categories="['total','bench','squat','deadlift']"
           :colors="['#00BFA5','#FFC107','#E91E63','#3F51B5']"
           :show-legend="true"
-          
         />
       </UiDashboardCard>
     </div>
@@ -51,6 +49,10 @@
 <script lang="ts" setup>
 import AreaChart from '~/components/ui/chart-area/AreaChart.vue';
 import DonutChart from '~/components/ui/chart-donut/DonutChart.vue';
+
+const { status, data } = useAuthState()
+
+console.log('Session data: ', data)
 
 const progress = ref(0);
 
@@ -64,7 +66,7 @@ function test()
   console.log("test");
 }
 
-const data = [
+const datas = [
   { name: 'Squat', total: 100 },
   { name: 'Bench', total: 80 },
   { name: 'Deadlift', total: 120 },

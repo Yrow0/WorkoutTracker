@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     },
   auth: {
     isEnabled : true,
-    globalAppMiddleware:true,
+    globalAppMiddleware:false,
     baseURL: 'https://localhost:7010/api/',
     provider:{
       type:'local',
@@ -33,29 +33,29 @@ export default defineNuxtConfig({
         signIn: { path: 'auth/Authenticate', method: 'post' },
         signOut: false,
         signUp: { path: 'user/create', method: 'post' },
-        getSession: { path: 'session', method: 'get' },
+        getSession: { path: 'auth/getsession', method: 'get' },
       },
       token: {
         signInResponseTokenPointer: '/token',
         type: 'Bearer',
         cookieName: 'auth.token',
         headerName: 'Authorization',
-        maxAgeInSeconds: 1800,
         sameSiteAttribute: 'none',
         cookieDomain: '.',
         secureCookieAttribute: false,
-        httpOnlyCookieAttribute: false,
+        httpOnlyCookieAttribute: true,
       },
       refresh: {
-        isEnabled: false, 
+        isEnabled: false,
         // TODO : REFRESH ROUTE IN API
         // endpoint: { path: '/refresh', method: 'POST' },
         // refreshOnlyToken: true,
       },
       session: {
         dataType: {
-          firstName: 'string',
-          lastName: 'string',
+          Id : 'guid',
+          Username: 'string',
+          Email: 'string',
         },
       }
     }

@@ -9,6 +9,6 @@
 <script lang="ts">
 import { useColorMode } from '@vueuse/core';
 
+useColorMode();
 
-const colorMode = useColorMode()
 </script>
